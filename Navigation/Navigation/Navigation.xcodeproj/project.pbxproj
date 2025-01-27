@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CFE221A02D47626E00575F39 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = CFE2219F2D47626E00575F39 /* IdentifiedCollections */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CFE2217F2D474A5E00575F39 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -42,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CFE221A02D47626E00575F39 /* IdentifiedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +105,7 @@
 			);
 			name = Navigation;
 			packageProductDependencies = (
+				CFE2219F2D47626E00575F39 /* IdentifiedCollections */,
 			);
 			productName = Navigation;
 			productReference = CFE2216E2D474A5D00575F39 /* Navigation.app */;
@@ -177,6 +183,9 @@
 			);
 			mainGroup = CFE221652D474A5D00575F39;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CFE2216F2D474A5D00575F39 /* Products */;
 			projectDirPath = "";
@@ -540,6 +549,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-identified-collections";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CFE2219F2D47626E00575F39 /* IdentifiedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
+			productName = IdentifiedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CFE221662D474A5D00575F39 /* Project object */;
 }
