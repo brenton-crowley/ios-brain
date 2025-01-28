@@ -1,3 +1,4 @@
+import CasePaths
 import SwiftUI
 
 /// Inspiration source: https://www.pointfree.co/episodes/ep161-swiftui-navigation-tabs-alerts-part-2
@@ -61,5 +62,32 @@ extension View {
             actions: actions,
             message: message
         )
+    }
+}
+
+struct IfCaseLet<Enum, Case, Content>: View where Content: View {
+    let binding: Binding<Enum>
+    let casePath: AnyCasePath<Enum, Case>
+    let content: (Binding<Case>) -> Content
+
+    init(
+        _ binding: Binding<Enum>,
+        matches casePath: AnyCasePath<Enum, Case>,
+        @ViewBuilder content: @escaping (Binding<Case>) -> Content
+    ) {
+        self.binding = binding
+        self.casePath = casePath
+        self.content = content
+    }
+
+    var body: some View {
+        if let `case` = casePath.extract(from: binding.wrappedValue) {
+            content(
+                Binding(
+                    get: { `case` },
+                    set: { binding.wrappedValue = casePath.embed($0) }
+                )
+            )
+        }
     }
 }

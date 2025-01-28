@@ -1,3 +1,4 @@
+import CasePaths
 import SwiftUI
 
 struct ItemView: View {
@@ -21,36 +22,17 @@ struct ItemView: View {
                 }
             )
 
-            switch item.status {
-            case let .inStock(quantity):
+            IfCaseLet($item.status, matches: /Item.Status.inStock) { $quantity in
                 Section(header: Text("In stock")) {
-                    Stepper.init(
-                        "Quantity: \(quantity)",
-                        value: .init(
-                            get: { quantity },
-                            set: { item.status = .inStock(quantity: $0)}
-                        )
-                    )
-
-
-                    Button("Mark as sold out") {
-                        item.status = .outOfStock(isOnBackOrder: false)
-                    }
+                    Stepper("Quantity: \(quantity)", value: $quantity)
+                    Button("Mark as sold out") { item.status = .outOfStock(isOnBackOrder: false) }
                 }
+            }
 
-            case let .outOfStock(isOnBackOrder):
+            IfCaseLet($item.status, matches: /Item.Status.outOfStock) { (isOnBackOrder: Binding<Bool>) in
                 Section(header: Text("Out of stock")) {
-                    Toggle(
-                        "Is on back order",
-                        isOn: .init(
-                            get: { isOnBackOrder },
-                            set: { item.status = .outOfStock(isOnBackOrder: $0) }
-                        )
-                    )
-
-                    Button("Is back in stock!") {
-                        item.status = .inStock(quantity: 1)
-                    }
+                    Toggle("Is on back order", isOn: isOnBackOrder)
+                    Button("Is back in stock!") { item.status = .inStock(quantity: 1) }
                 }
             }
         }

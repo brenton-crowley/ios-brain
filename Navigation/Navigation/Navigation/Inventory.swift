@@ -1,5 +1,7 @@
-import SwiftUI
+import CasePaths
+import CasePathsCore
 import IdentifiedCollections
+import SwiftUI
 
 struct Item: Equatable, Identifiable {
     let id = UUID()
@@ -9,7 +11,8 @@ struct Item: Equatable, Identifiable {
     //  var quantity: Int
     //  var isOnBackOrder: Bool
 
-    enum Status: Equatable {
+    @CasePathable
+    enum Status: Equatable, CasePathable {        
         case inStock(quantity: Int)
         case outOfStock(isOnBackOrder: Bool)
 

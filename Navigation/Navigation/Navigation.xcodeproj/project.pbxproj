@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CF879EB92D486EB800BBAA48 /* CasePaths in Frameworks */ = {isa = PBXBuildFile; productRef = CF879EB82D486EB800BBAA48 /* CasePaths */; };
+		CF879EBB2D486EB800BBAA48 /* CasePathsCore in Frameworks */ = {isa = PBXBuildFile; productRef = CF879EBA2D486EB800BBAA48 /* CasePathsCore */; };
 		CFE221A02D47626E00575F39 /* IdentifiedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = CFE2219F2D47626E00575F39 /* IdentifiedCollections */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +49,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CFE221A02D47626E00575F39 /* IdentifiedCollections in Frameworks */,
+				CF879EB92D486EB800BBAA48 /* CasePaths in Frameworks */,
+				CF879EBB2D486EB800BBAA48 /* CasePathsCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +110,8 @@
 			name = Navigation;
 			packageProductDependencies = (
 				CFE2219F2D47626E00575F39 /* IdentifiedCollections */,
+				CF879EB82D486EB800BBAA48 /* CasePaths */,
+				CF879EBA2D486EB800BBAA48 /* CasePathsCore */,
 			);
 			productName = Navigation;
 			productReference = CFE2216E2D474A5D00575F39 /* Navigation.app */;
@@ -185,6 +191,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */,
+				CF879EB72D486EB800BBAA48 /* XCRemoteSwiftPackageReference "swift-case-paths" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CFE2216F2D474A5D00575F39 /* Products */;
@@ -551,6 +558,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CF879EB72D486EB800BBAA48 /* XCRemoteSwiftPackageReference "swift-case-paths" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-case-paths.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
 		CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/pointfreeco/swift-identified-collections";
@@ -562,6 +577,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CF879EB82D486EB800BBAA48 /* CasePaths */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF879EB72D486EB800BBAA48 /* XCRemoteSwiftPackageReference "swift-case-paths" */;
+			productName = CasePaths;
+		};
+		CF879EBA2D486EB800BBAA48 /* CasePathsCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CF879EB72D486EB800BBAA48 /* XCRemoteSwiftPackageReference "swift-case-paths" */;
+			productName = CasePathsCore;
+		};
 		CFE2219F2D47626E00575F39 /* IdentifiedCollections */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CFE2219E2D47626E00575F39 /* XCRemoteSwiftPackageReference "swift-identified-collections" */;
