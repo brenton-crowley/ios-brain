@@ -50,13 +50,16 @@ struct Item: Equatable, Identifiable {
 class InventoryViewModel: ObservableObject {
     @Published var inventory: IdentifiedArrayOf<Item>
     @Published var itemToDelete: Item?
+    @Published var itemToAdd: Item?
 
     init(
         inventory: IdentifiedArrayOf<Item> = [],
-        itemToDelete: Item? = nil
+        itemToDelete: Item? = nil,
+        itemToAdd: Item? = nil
     ) {
         self.inventory = inventory
         self.itemToDelete = itemToDelete
+        self.itemToAdd = itemToAdd
     }
 
     func delete(item: Item) {
@@ -124,6 +127,23 @@ struct InventoryView: View {
             },
             message: { Text("Are you sure you want to delete \($0.name)?") }
         )
+        .toolbar {
+            ToolbarItem.init(placement: .primaryAction) {
+                Button(
+                    "",
+                    systemImage: "plus",
+                    action: { viewModel.itemToAdd = .init(name: "", color: .black, status: .inStock(quantity: 1)) }
+                )
+            }
+        }
+        .navigationTitle("Inventory")
+        .sheet(
+            item: $viewModel.itemToAdd,
+            onDismiss: {},
+            content: { item in
+                NavigationView { ItemView(item: item) }
+            }
+        )
         // .alert(
         //     title: { Text($0.name) },
         //     presenting: $viewModel.itemToDelete,
@@ -157,17 +177,19 @@ struct InventoryView: View {
 struct InventoryView_Previews: PreviewProvider {
     static var previews: some View {
         let keyboard = Item(name: "Keyboard", color: .blue, status: .inStock(quantity: 100))
-
-        InventoryView(
-            viewModel: .init(
-                inventory: [
-                    keyboard,
-                    Item(name: "Charger", color: .yellow, status: .inStock(quantity: 20)),
-                    Item(name: "Phone", color: .green, status: .outOfStock(isOnBackOrder: true)),
-                    Item(name: "Headphones", color: .green, status: .outOfStock(isOnBackOrder: false)),
-                ],
-                itemToDelete: keyboard
+        NavigationView {
+            InventoryView(
+                viewModel: .init(
+                    inventory: [
+                        keyboard,
+                        Item(name: "Charger", color: .yellow, status: .inStock(quantity: 20)),
+                        Item(name: "Phone", color: .green, status: .outOfStock(isOnBackOrder: true)),
+                        Item(name: "Headphones", color: .green, status: .outOfStock(isOnBackOrder: false)),
+                    ],
+                    itemToDelete: nil
+                )
             )
-        )
+        }
+
     }
 }

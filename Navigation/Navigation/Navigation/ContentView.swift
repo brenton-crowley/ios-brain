@@ -38,7 +38,7 @@ struct ContentView: View {
                     "Inventory",
                     systemImage: "list.clipboard",
                     value: TabOption.inventory,
-                    content: { InventoryView(viewModel: viewModel.inventoryViewModel) }
+                    content: { NavigationView { InventoryView(viewModel: viewModel.inventoryViewModel) } }
                 )
 
                 Tab(
